@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Group</title>
+</head>
+<body>
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<div class="table-responsive">
+			<form action="<c:url value='/group'/>" id="group" method="get">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="checkAll"></th>
+							<th>Tên bài viết</th>
+							<th>Mô tả ngắn</th>
+							<th>Thao tác</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" begin="1" end ="4">
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>hahhaha</td>
+								<td>jajaja</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

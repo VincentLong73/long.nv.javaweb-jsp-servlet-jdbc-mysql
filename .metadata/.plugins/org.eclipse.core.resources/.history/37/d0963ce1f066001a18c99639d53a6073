@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title><dec:title default="Trang chủ"/></title>
+<style>
+</style>
+
+<!-- css -->
+<link rel="stylesheet" href="<c:url value='/template/admin/assets/font-awavesome/4.5.0/css/font-awesome.css'/>"/>
+<link rel="stylesheet" href="<c:url value='/template/web/bootstrap/css/bootstrap.css'/>"/>
+<link href="<c:url value='/template/web/css/slider.css'/>" rel="stylesheet" type="text/css"/>
+<link href="<c:url value='/template/web/css/mystyle.css'/>" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<!-- header -->
+<%@include file="/common/web/header.jsp" %>
+<!-- header -->
+
+<dec:body/>
+
+<!-- footer -->
+<%@include file = "/common/web/footer.jsp" %>
+<!-- footer -->
+
+<script type="text/javascript" src="/template/web/source/js/isotope.js"></script>
+<script type="text/javascript" src="/template/web/source/js/myscript.js"></script> 
+<script type="text/javascript" src="/template/web/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/template/web/jquery/jquery.js"></script>
+<script type="text/javascript" src="/template/web/jquery/jquery-1.11.0.js"></script>
+</body>
+</html>

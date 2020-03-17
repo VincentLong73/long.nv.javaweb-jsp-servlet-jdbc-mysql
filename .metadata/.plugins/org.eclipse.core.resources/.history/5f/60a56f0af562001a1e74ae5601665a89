@@ -1,0 +1,78 @@
+package jp.vn.yuanyuan.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import jp.vn.yuanyuan.dao.IUserDAO;
+import jp.vn.yuanyuan.mapper.UserMapper;
+import jp.vn.yuanyuan.model.UserModel;
+
+public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO {
+
+	@Override
+	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password, Integer status) {
+		
+		StringBuilder sql = new StringBuilder("select * from user as u");
+		sql.append(" inner join role as r on r.id=u.roleid");
+		sql.append(" where username=? and password = ? and status=?");
+		List<UserModel> users = query(sql.toString(),new UserMapper(),userName,password,status);
+		return users.isEmpty() ? null : users.get(0);
+	}
+
+	@Override
+	public Long save(UserModel model) {
+		ResultSet resultSet = null;
+		Long id = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			
+			StringBuilder sql = new StringBuilder("insert into user ");
+			sql.append(" (username,password,fullname,status,roleid)");
+			sql.append(" values (?,?,?,?,?)");
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(sql.toString(),Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1, model.getUserName());
+			preparedStatement.setString(2, model.getPassword());
+			preparedStatement.setString(3, model.getFullName());
+			preparedStatement.setInt(4, model.getStatus());
+			preparedStatement.setLong(5, model.getRoleId());
+			preparedStatement.executeUpdate();
+			resultSet = preparedStatement.getGeneratedKeys();
+			if(resultSet.next()) {
+				id = resultSet.getLong(1);
+			}
+			connection.commit();
+			return id;
+		} catch (SQLException e) {
+			if(connection!=null) {
+				try {
+					connection.rollback();
+				}catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return null;
+		}finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+
+		}
+		
+	}
+
+}

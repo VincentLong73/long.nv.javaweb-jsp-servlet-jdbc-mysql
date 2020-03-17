@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Cars</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Trang chủ
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <c:if test="${not empty USERMODEL}">
+           <li class="nav-item">
+            <a class="nav-link" href='#'>Welcome ${USERMODEL.userName }</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href='<c:url value="/thoat?action=logout"/>'>Thoát</a>
+          </li>
+          </c:if>
+          <c:if test="${empty USERMODEL}">
+          <li class="nav-item">
+            <a class="nav-link" href='<c:url value="/dang-nhap?action=login"/>'>Đăng nhập</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='<c:url value="/dang-ki?action=register"/>'>Đăng kí</a>
+          </li>
+          </c:if>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+  			<div class="navbar-brand"><img alt="Vinfast logo not exist" src="./images/logo/Vinfast-logo.png" style="width:25px;height=25px" title="Vinfast"></div>
+  			<div class="navbar-brand"><img alt="Audi logo not exist" src="./images/logo/Audi-logo-1999-1920x1080.png" style="width:25px;height=25px" title="Audi"></div>
+  			<div class="navbar-brand"><img alt="Audi logo not exist" src="./images/logo/Audi-logo-1999-1920x1080.png" style="width:70px;height=50px" title="Audi"></div>
+            <div class="navbar-brand"><img alt="BMW logo not exist" src="./images/logo/BMW-logo-2000-2048x2048.png" style="width:25px;height=25px" title="BMW"></div>
+            <div class="navbar-brand"><img alt="Cadillac logo not exist" src="./images/logo/Cadillac-logo-2014-1920x1080.png" style="width:25px;height=25px" title="Cadillac"></div>
+          	<div class="navbar-brand"><img alt="Chevrolet logo not exist" src="./images/logo/Chevrolet-logo-2013-2560x1440.png" style="width:25px;height=25px" title="Chevrolet"></div>
+            <div class="navbar-brand"><img alt="Vinfast logo not exist" src="./images/logo/Vinfast-logo.png" style="width:25px;height=25px" title="Vinfast"></div>
+            <div class="navbar-brand"><img alt="Vinfast logo not exist" src="./images/logo/Vinfast-logo.png" style="width:25px;height=25px" title="Vinfast"></div>
+            <div class="navbar-brand"><img alt="Aston Martin logo not exist" src="./images/logo/Aston-Martin-logo-2003-6000x3000.png" style="width:50px;height=25px" title="Aston Martin"></div>
+  </div>
+  
+      

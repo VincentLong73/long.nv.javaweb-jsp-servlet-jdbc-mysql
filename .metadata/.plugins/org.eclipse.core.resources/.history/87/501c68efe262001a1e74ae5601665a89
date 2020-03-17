@@ -1,0 +1,78 @@
+package jp.vn.yuanyuan.dao.impl;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import jp.vn.yuanyuan.dao.IUserDAO;
+import jp.vn.yuanyuan.mapper.UserMapper;
+import jp.vn.yuanyuan.model.UserModel;
+
+public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO {
+
+	@Override
+	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password, Integer status) {
+		
+		StringBuilder sql = new StringBuilder("select * from user as u");
+		sql.append(" inner join role as r on r.id=u.roleid");
+		sql.append(" where username=? and password = ? and status=?");
+		List<UserModel> users = query(sql.toString(),new UserMapper(),userName,password,status);
+		return users.isEmpty() ? null : users.get(0);
+	}
+
+	private static String jdbcURL = "jdbc:mysql://localhost:3306/demo";
+	private static String jdbcUsername = "root";
+	private static String jdbcPassword = "Dlongmysql";
+	
+	public Connection getConnection() {
+		Connection connection = null;
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	
+	public int registerUser(UserModel model) {
+		
+		String INSERT_USERS_SQL ="insert into user"+
+				" (fullname,username,password,status,roleid) values "+
+			" (?,?,?,?,?)";
+	
+	int result = 0;
+	try(Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
+		
+		preparedStatement.setString(3,model.getFullName());
+		preparedStatement.setString(1,model.getUserName());
+		preparedStatement.setString(2,model.getPassword());
+		preparedStatement.setInt(4,model.getStatus());
+		preparedStatement.setLong(5,model.getRoleId());
+		
+		
+		System.out.println(preparedStatement);
+		
+		result = preparedStatement.executeUpdate();
+		
+		connection.close();
+		preparedStatement.close();
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return result;
+}
+	
+
+}

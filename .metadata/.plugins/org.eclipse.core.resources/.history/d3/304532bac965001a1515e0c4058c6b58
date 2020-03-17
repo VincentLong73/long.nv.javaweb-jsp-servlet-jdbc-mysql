@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Group</title>
+</head>
+<body>
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<div class="table-responsive">
+			<!-- Jumbotron Header -->
+			<header class="jumbotron my-4">
+				<h1 class="display-3">A Warm Welcome!</h1>
+				<p class="lead">Lorem ipsum dolor sit amet, consectetur
+					adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non
+					incidunt odit vero aliquid similique quaerat nam nobis illo
+					aspernatur vitae fugiat numquam repellat.</p>
+				<a href="#" class="btn btn-primary btn-lg">Call to action!</a>
+			</header>
+			<div class="row text-center">
+				<c:forEach var="item" items="${model.listResult}">
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="card h-100">
+							<img class="card-img-top" src="${item.thumbnail}"
+								alt="">
+							<div class="card-body">
+								<h4 class="card-title">${item.title}</h4>
+								<p class="card-text">${item.shortDescription}</p>
+							</div>
+							<div class="card-footer">
+								<a href="/java_web_jsp_servlet_jdbc_mysql/item" class="btn btn-primary">Find Out More!</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<!--  
+			<form action="<c:url value='/group'/>" id="group" method="get">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="checkAll"></th>
+							<th>Tên bài viết</th>
+							<th>Mô tả ngắn</th>
+							<th>Thao tác</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${model.listResult}">
+
+							<tr>
+								<td><input type="checkbox" id="checkbox_${item.id}"
+									value="${item.id}"></td>
+								<td>${item.title}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
+			-->
+		</div>
+	</div>
+</body>
+</html>

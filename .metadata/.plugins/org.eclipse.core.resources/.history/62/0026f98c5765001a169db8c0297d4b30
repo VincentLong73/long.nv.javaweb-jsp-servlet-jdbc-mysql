@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html >
+<html>
+<head>
+<style>
+</style>
+<title>Group</title>
+</head>
+<body>
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<div class="table-responsive">
+			<form action="<c:url value='/group'/>" id="group" method="get">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="checkAll"></th>
+							<th>Tên bài viết</th>
+							<th>Mô tả ngắn</th>
+							<th>Thao tác</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" begin="1" end ="4">
+							<tr>
+								<td><input type="checkbox" id="checkbox_${item.id}"
+									value="${item.id}"></td>
+								<td>${item.title}</td>
+								<td>${item.shortDescription}</td>
+								<td><c:url var="editURL" value="/admin-new-list">
+										<c:param name="type" value="edit" />
+										<c:param name="id" value="${item.id}" />
+									</c:url> <a class="btn btn-sm btn-primary btn-edit"
+									data-toggle="tooltip" title="Cập nhật bài viết"
+									href='${editURL}'><i class="fa fa-pencil-square-o"
+										aria-hidden="true"></i> </a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
