@@ -24,7 +24,7 @@
 
 <link href="<c:url value='/template/login/style.css'/>" rel="stylesheet" type="text/css" media ="all"/>
 </head>
-<body id="FormLogin">
+<body id="FormLogin" style="background-image:url('https://img.freepik.com/free-vector/back-car-silhouette-with-red-lights-dark-black-background_148087-2.jpg');">
 <dec:body/>
 </body>
 </html>
